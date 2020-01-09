@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Gamoshi - Mobile</string>
+    <string name="adTypeText">Ad Type</string>
+
+    <string name="adTypeBanner">Banner</string>
+    <string name="adTypeInterstitial">Interstitial</string>
+    <string name="adTypeBannerVideo">Banner Video</string>
+    <string name="adTypeInterstitialVideo">Interstitial Video</string>
+    <string name="adTypeVideo">Video</string>
+
+    <string-array name="adTypeArray">
+        <item>@string/adTypeBanner</item>
+        <item>@string/adTypeInterstitial</item>
+        <item>@string/adTypeVideo</item>
+        <!--        <item>@string/adTypeBannerVideo</item>-->
+        <!--        <item>@string/adTypeInterstitialVideo</item>-->
+    </string-array>
+
+    <string name="adServerText">Ad Server</string>
+
+    <string name="adServerAdManager">AdManager</string>
+    <string name="adServerMoPub">MoPub</string>
+
+    <string-array name="adServerArray">
+        <!--        <item>@string/adServerAdManager</item>-->
+        <item>@string/adServerMoPub</item>
+        <item>@string/adServerAdManager</item>
+    </string-array>
+
+    <string name="adSizeText">Ad Size</string>
+    <string-array name="adSizeArray">
+        <item>300x250</item>
+        <item>320x50</item>
+    </string-array>
+    <string name="buttonText">Show Ad</string>
+    <string name="autoRefreshText">Refresh Millis</string>
+    <string name="supplyPartnerIdText">Supply Partner Id</string>
+    <string name="adUnitIdText">Ad Unit Id</string>
+</resources>
