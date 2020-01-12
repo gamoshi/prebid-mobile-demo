@@ -17,37 +17,32 @@
 package com.gamoshi.app;
 
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
-import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 import com.mopub.mobileads.MoPubView;
 
 import org.prebid.mobile.AdUnit;
 import org.prebid.mobile.BannerAdUnit;
 import org.prebid.mobile.Host;
-import org.prebid.mobile.InterstitialAdUnit;
 import org.prebid.mobile.PrebidMobile;
 import org.prebid.mobile.ResultCode;
 import org.prebid.mobile.VideoAdUnit;
-import org.prebid.mobile.VideoInterstitialAdUnit;
 import org.prebid.mobile.addendum.AdViewUtils;
 import org.prebid.mobile.addendum.PbFindSizeError;
-
-import static com.gamoshi.app.Constants.GAMOSHI_MOPUB_INTERSTITIAL_ADUNIT_ID;
 
 public class GamoshiActivity extends AppCompatActivity {
 
@@ -69,6 +64,13 @@ public class GamoshiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gamoshi);
 
+        ActionBar bar = getSupportActionBar();
+        if (bar != null) {
+            bar.setCustomView(R.layout.custom_title_bar);
+            bar.setDisplayOptions(bar.DISPLAY_SHOW_CUSTOM);
+        }
+
+
         // Get data from main-activity:
         Intent intent = getIntent();
 
@@ -86,7 +88,9 @@ public class GamoshiActivity extends AppCompatActivity {
         String adTypeName = intent.getStringExtra(Constants.AD_TYPE_NAME);
         String adServerName = intent.getStringExtra(Constants.AD_SERVER_NAME);
         String adSizeName = intent.getStringExtra(Constants.AD_SIZE_NAME);
-        this.setTitle(this.getTitle() + " ( " + adTypeName + " )");
+
+        TextView title = findViewById(R.id.adTitle);
+        title.setText(String.format("Gamoshi - Mobile ( %s )", adTypeName));
 
         // Get ad types constants:
         String adTypeBanner = getString(R.string.adTypeBanner);

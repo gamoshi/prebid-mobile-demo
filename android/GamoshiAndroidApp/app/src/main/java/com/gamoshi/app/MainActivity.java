@@ -1,7 +1,5 @@
 package com.gamoshi.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,10 +29,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar bar = getSupportActionBar();
+        if (bar != null) {
+            //for image
+
+            bar.setCustomView(R.layout.custom_title_bar);
+            bar.setDisplayOptions(bar.DISPLAY_SHOW_CUSTOM);
+        }
+
         setContentView(R.layout.activity_main);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
+
+        TextView title = findViewById(R.id.adTitle);
+        title.setText("Gamoshi - Mobile");
 
         // Set up all components
 
