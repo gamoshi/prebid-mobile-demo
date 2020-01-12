@@ -10,8 +10,8 @@
 
     <string-array name="adTypeArray">
         <item>@string/adTypeBanner</item>
-        <item>@string/adTypeInterstitial</item>
-        <item>@string/adTypeVideo</item>
+        <!--        <item>@string/adTypeVideo</item>-->
+        <!--        <item>@string/adTypeInterstitial</item>-->
         <!--        <item>@string/adTypeBannerVideo</item>-->
         <!--        <item>@string/adTypeInterstitialVideo</item>-->
     </string-array>

@@ -32,75 +32,24 @@ public class MainActivity extends AppCompatActivity {
             WebView.setWebContentsDebuggingEnabled(true);
         }
 
-        // Get all the components
-        Spinner adTypeSpinner = findViewById(R.id.adTypeSpinner);
+        // Set up all components
 
         // Ad Type Spinner set up
-        ArrayAdapter<CharSequence> adTypeAdapter = ArrayAdapter.createFromResource(
-                this, R.array.adTypeArray,
-                android.R.layout.simple_spinner_item);
-        adTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adTypeSpinner.setAdapter(adTypeAdapter);
+        adTypeSpinnerSetUp();
 
-        final LinearLayout adSizeRow = findViewById(R.id.adSizeRow);
-        //final LinearLayout adRefreshRow = findViewById(R.id.autoRefreshRow);
-        adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            List<String> adTypes = Arrays.asList(getResources().getStringArray(R.array.adTypeArray));
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-
-                adSizeRow.setVisibility(View.INVISIBLE);
-                //adRefreshRow.setVisibility(View.INVISIBLE);
-
-                if (pos > adTypes.size()) {
-                    return;
-                }
-                adType = adTypes.get(pos);
-                if (adType.equals("Banner")) {
-                    // show size and refresh millis
-
-                    adSizeRow.setVisibility(View.VISIBLE);
-                    //adRefreshRow.setVisibility(View.VISIBLE);
-                } else if (adType.equals("Interstitial")) {
-                    //adRefreshRow.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-        // Ad Server Spinner (i.e. drop-down)
-        Spinner adServerSpinner = findViewById(R.id.adServerSpinner);
-        ArrayAdapter<CharSequence> adServerAdapter =
-                ArrayAdapter.createFromResource(this,
-                        R.array.adServerArray,
-                        android.R.layout.simple_spinner_item);
-        adServerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adServerSpinner.setAdapter(adServerAdapter);
-        adServerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            List<String> adServers = Arrays.asList(getResources().getStringArray(R.array.adServerArray));
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-                if (pos > adServers.size()) {
-                    return;
-                }
-                adServer = adServers.get(pos);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+        // Ad Server Spinner set up
+        adServerSpinnerSetUp();
 
         // Ad Size Spinner
+        adSizeSpinnerSetUp();
+    }
+
+    private void adSizeSpinnerSetUp() {
         Spinner adSizeSpinner = findViewById(R.id.adSizeSpinner);
-        ArrayAdapter<CharSequence> adSizeAdapter = ArrayAdapter.createFromResource(
-                this, R.array.adSizeArray,
-                android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adSizeAdapter =
+                ArrayAdapter.createFromResource(
+                        this, R.array.adSizeArray,
+                        android.R.layout.simple_spinner_item);
         adSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adSizeSpinner.setAdapter(adSizeAdapter);
         adSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -120,12 +69,96 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void adServerSpinnerSetUp() {
+        EditText adUnitIdText = findViewById(R.id.adUnitIdInput);
+        String adServerAdManager = getResources().getString(R.string.adServerAdManager);
+        String adServerMoPub = getString(R.string.adServerMoPub);
+        Spinner adServerSpinner = findViewById(R.id.adServerSpinner);
+        ArrayAdapter<CharSequence> adServerAdapter =
+                ArrayAdapter.createFromResource(this,
+                        R.array.adServerArray,
+                        android.R.layout.simple_spinner_item);
+        adServerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adServerSpinner.setAdapter(adServerAdapter);
+        adServerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            List<String> adServers = Arrays.asList(getResources().getStringArray(R.array.adServerArray));
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                if (pos > adServers.size()) {
+                    return;
+                }
+                adServer = adServers.get(pos);
+
+                if (adServer.equals(adServerMoPub)) {
+                    adUnitIdText.setText(Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250);
+                } else if (adServer.equals(adServerAdManager)) {
+                    adUnitIdText.setText(Constants.GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+    }
+
+    private void adTypeSpinnerSetUp() {
+        Spinner adTypeSpinner = findViewById(R.id.adTypeSpinner);
+
+        ArrayAdapter<CharSequence> adTypeAdapter =
+                ArrayAdapter
+                        .createFromResource(this, R.array.adTypeArray,
+                                android.R.layout.simple_spinner_item);
+
+        adTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adTypeSpinner.setAdapter(adTypeAdapter);
+
+        final LinearLayout adSizeRow = findViewById(R.id.adSizeRow);
+        final EditText supplyPartnerIdText = findViewById(R.id.supplyPartnerIdInput);
+
+        //final LinearLayout adRefreshRow = findViewById(R.id.autoRefreshRow);
+
+        adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            List<String> adTypes = Arrays.asList(getResources().getStringArray(R.array.adTypeArray));
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+
+                adSizeRow.setVisibility(View.INVISIBLE);
+
+                if (pos > adTypes.size()) {
+                    return;
+                }
+                adType = adTypes.get(pos);
+                String adTypeBanner = getString(R.string.adTypeBanner);
+                String adTypeVideo = getString(R.string.adTypeVideo);
+
+                if (adType.equals(adTypeBanner)) {
+
+                    // show size and refresh millis
+                    adSizeRow.setVisibility(View.VISIBLE);
+                    supplyPartnerIdText.setText(Constants.GAMOSHI_BANNER_ACCOUNT_ID);
+
+                } else if (adType.equals(adTypeVideo)) {
+
+                    //adRefreshRow.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+    }
+
     public void showAd(View view) {
         Intent gamoshiActivityIntent = new Intent(this, GamoshiActivity.class);
         gamoshiActivityIntent.putExtra(Constants.AD_SERVER_NAME, adServer);
         gamoshiActivityIntent.putExtra(Constants.AD_TYPE_NAME, adType);
 
-        if ("Banner".equals(adType)) {
+        String adTypeBanner = getString(R.string.adTypeBanner);
+        if (adType.equals(adTypeBanner)) {
             gamoshiActivityIntent.putExtra(Constants.AD_SIZE_NAME, adSize);
         }
 
