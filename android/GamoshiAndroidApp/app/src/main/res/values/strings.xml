@@ -34,7 +34,7 @@
     </string-array>
     <string name="buttonText">Show Ad</string>
     <string name="autoRefreshText">Refresh Millis</string>
-    <string name="supplyPartnerIdText">Supply Partner Id</string>
+    <string name="supplyPartnerIdText">Supply Id</string>
     <string name="adUnitIdText">Ad Unit Id</string>
     <string name="toolbar_title">Toolbar Title</string>
 </resources>
