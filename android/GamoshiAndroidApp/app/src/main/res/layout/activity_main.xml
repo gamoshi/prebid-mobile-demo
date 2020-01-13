@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:background="@color/colorPrimary"
-            android:padding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="20sp" />
@@ -28,23 +29,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/adTypeText"
                 android:layout_width="136dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:minHeight="48dp"
-                android:padding="8dp"
                 android:text="@string/adTypeText"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -53,8 +52,6 @@
                 android:id="@+id/adTypeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="center"
                 android:minWidth="128dp"
                 android:minHeight="48dp" />
         </LinearLayout>
@@ -62,16 +59,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/adServerText"
                 android:layout_width="136dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:minHeight="48dp"
-                android:padding="8dp"
                 android:text="@string/adServerText"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -80,7 +75,6 @@
                 android:id="@+id/adServerSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
                 android:gravity="center"
                 android:minWidth="128dp"
                 android:minHeight="48dp" />
@@ -90,16 +84,14 @@
             android:id="@+id/adSizeRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/adSizeText"
                 android:layout_width="136dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:minHeight="48dp"
-                android:padding="8dp"
                 android:text="@string/adSizeText"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -108,7 +100,6 @@
                 android:id="@+id/adSizeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
                 android:gravity="center"
                 android:minWidth="128dp"
                 android:minHeight="48dp" />
@@ -118,16 +109,14 @@
             android:id="@+id/supplyPartnerIdRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/supplyPartnerIdText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:minHeight="48dp"
-                android:paddingLeft="20dp"
                 android:text="@string/supplyPartnerIdText"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -136,35 +125,6 @@
                 android:id="@+id/supplyPartnerIdInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:inputType="phone"
-                android:minWidth="128dp"
-                android:minHeight="48dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/adUnitIdRow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="0dp">
-
-            <TextView
-                android:id="@+id/adUnitIdText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:paddingLeft="20dp"
-                android:text="@string/adUnitIdText"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/adUnitIdInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:gravity="center"
                 android:inputType="phone"
                 android:minWidth="128dp"

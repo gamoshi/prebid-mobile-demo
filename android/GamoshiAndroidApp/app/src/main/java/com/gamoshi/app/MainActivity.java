@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
-            //for image
-
             bar.setCustomView(R.layout.custom_title_bar);
             bar.setDisplayOptions(bar.DISPLAY_SHOW_CUSTOM);
         }
@@ -45,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView title = findViewById(R.id.adTitle);
-        title.setText("Gamoshi - Mobile");
-
-        // Set up all components
+        title.setText(getString(R.string.app_name));
 
         // Ad Type Spinner set up
         adTypeSpinnerSetUp();
@@ -85,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adServerSpinnerSetUp() {
-        EditText adUnitIdText = findViewById(R.id.adUnitIdInput);
-        String adServerAdManager = getResources().getString(R.string.adServerAdManager);
-        String adServerMoPub = getString(R.string.adServerMoPub);
         Spinner adServerSpinner = findViewById(R.id.adServerSpinner);
         ArrayAdapter<CharSequence> adServerAdapter =
                 ArrayAdapter.createFromResource(this,
@@ -104,12 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 adServer = adServers.get(pos);
-
-                if (adServer.equals(adServerMoPub)) {
-                    adUnitIdText.setText(Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250);
-                } else if (adServer.equals(adServerAdManager)) {
-                    adUnitIdText.setText(Constants.GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES);
-                }
             }
 
             @Override
@@ -131,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
         final LinearLayout adSizeRow = findViewById(R.id.adSizeRow);
         final EditText supplyPartnerIdText = findViewById(R.id.supplyPartnerIdInput);
-
-        //final LinearLayout adRefreshRow = findViewById(R.id.autoRefreshRow);
 
         adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             List<String> adTypes = Arrays.asList(getResources().getStringArray(R.array.adTypeArray));
@@ -186,8 +171,15 @@ public class MainActivity extends AppCompatActivity {
             gamoshiActivityIntent.putExtra(Constants.SUPPLY_PARTNER_ID_NAME, supplyPartnerIdString);
         }
 
-        EditText adUnitIdText = findViewById(R.id.adUnitIdInput);
-        String adUnitIdString = adUnitIdText.getText().toString();
+        String adServerMoPub = getString(R.string.adServerMoPub);
+        String adServerAdManager = getString(R.string.adServerAdManager);
+        String adUnitIdString = null;
+        if (adServer.equals(adServerMoPub)) {
+            adUnitIdString = Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250;
+        } else if (adServer.equals(adServerAdManager)) {
+            adUnitIdString = Constants.GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES;
+        }
+
         if (!TextUtils.isEmpty(adUnitIdString)) {
             gamoshiActivityIntent.putExtra(Constants.AD_UNIT_ID_NAME, adUnitIdString);
         }

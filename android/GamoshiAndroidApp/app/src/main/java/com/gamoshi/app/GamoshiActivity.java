@@ -17,7 +17,6 @@
 package com.gamoshi.app;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -89,8 +88,11 @@ public class GamoshiActivity extends AppCompatActivity {
         String adServerName = intent.getStringExtra(Constants.AD_SERVER_NAME);
         String adSizeName = intent.getStringExtra(Constants.AD_SIZE_NAME);
 
+        String subTitle = getString(R.string.app_name);
+        subTitle = subTitle + " ( " + adTypeName + " )";
+
         TextView title = findViewById(R.id.adTitle);
-        title.setText(String.format("Gamoshi - Mobile ( %s )", adTypeName));
+        title.setText(subTitle);
 
         // Get ad types constants:
         String adTypeBanner = getString(R.string.adTypeBanner);
