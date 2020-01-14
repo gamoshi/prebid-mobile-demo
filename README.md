@@ -8,9 +8,9 @@ This repository contains demo mobile apps for running mobile ads using prebid sd
 
 Before running this demo applications, please read carefully the official instructions of Prebid for how to integrate Prebid SDK in Android or iOS.
 
-- [Instructions for Android]("http://prebid.org/prebid-mobile/pbm-api/android/code-integration-android.html")
+- [Instructions for Android](http://prebid.org/prebid-mobile/pbm-api/android/code-integration-android.html)
 
-- [Instructions for iOS]("http://prebid.org/prebid-mobile/pbm-api/ios/code-integration-ios.html")
+- [Instructions for iOS](http://prebid.org/prebid-mobile/pbm-api/ios/code-integration-ios.html)
 
 ## Running Gamoshi Demo Apps
 
