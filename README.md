@@ -35,6 +35,6 @@ TBD
 
 ### Banner
 
-Our application shipped with a default **customer id**: `1274` for testing **300x250** banner ads.
+Our application shipped with a default **supply partner id**: `1274` for testing **300x250** banner ads.
 
 In order to test your own banner creatives in our system, please insert your supply id in the `Supply Id` field after running the application.
