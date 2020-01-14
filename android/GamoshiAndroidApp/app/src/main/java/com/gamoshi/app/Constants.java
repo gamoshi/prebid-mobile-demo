@@ -17,10 +17,7 @@
 package com.gamoshi.app;
 
 
-public class Constants {
-
-
-
+class Constants {
 
     private Constants() {
     }
@@ -32,18 +29,14 @@ public class Constants {
     static final String SUPPLY_PARTNER_ID_NAME = "supplyPartnerId";
     static final String AD_UNIT_ID_NAME = "adUnitId";
 
-
+    static final String GAMOSHI_HOST_URL ="https://prebid.gamoshi.io/openrtb2/auction" ;
+    static final String GAMOSHI_ACCOUNT_ID_PREFIX = "gamoshi-";
     static final String GAMOSHI_BANNER_ACCOUNT_ID = "1274";
     static final String GAMOSHI_VIDEO_ACCOUNT_ID = "1275";
 
-    // Gamoshi - MoPub ad unit ids:
-    static final String GAMOSHI_HOST_URL ="https://prebid.gamoshi.io/openrtb2/auction" ;
+    // MoPub ad unit id:
+    static final String GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250 = "db213b75a2524330900c05e17e79f815";
 
-    static final String GAMOSHI_ACCOUNT_ID_PREFIX = "gamoshi-";
-    static final String GAMOSHI_PBS_CONFIG_ID_300x250 = "gamoshi-1274";
-    static final String GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250 = "db213b75a2524330900c05e17e79f815"; // 13b14bd907414ffaadc6fe0095ed4714
-    static final String GAMOSHI_MOPUB_INTERSTITIAL_ADUNIT_ID = "712327ca56e44d759c6e6eeb89a0f951";
-
-    // AdManager constants:
+    // DFP ad unit id:
     static final String GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES = "/21794425054/hb_pb";
 }
