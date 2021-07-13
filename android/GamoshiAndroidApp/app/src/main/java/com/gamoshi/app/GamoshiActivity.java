@@ -30,8 +30,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
@@ -39,10 +39,8 @@ import com.mopub.mobileads.MoPubView;
 
 import org.prebid.mobile.AdUnit;
 import org.prebid.mobile.BannerAdUnit;
-import org.prebid.mobile.BannerBaseAdUnit;
 import org.prebid.mobile.Host;
 import org.prebid.mobile.InterstitialAdUnit;
-import org.prebid.mobile.OnCompleteListener;
 import org.prebid.mobile.PrebidMobile;
 import org.prebid.mobile.ResultCode;
 import org.prebid.mobile.VideoAdUnit;
@@ -111,23 +109,23 @@ public class GamoshiActivity extends AppCompatActivity {
         if (adServerMoPub.equals(adServerName)) {
             String adUnitId = intent.getStringExtra(Constants.AD_UNIT_ID_NAME);
 
+            assert adSizeName != null;
             String[] wAndH = adSizeName.split("x");
-            int width = Integer.valueOf(wAndH[0]);
-            int height = Integer.valueOf(wAndH[1]);
+            int width = Integer.parseInt(wAndH[0]);
+            int height = Integer.parseInt(wAndH[1]);
             if (adTypeBanner.equals(adTypeName)) {
                 setupAndLoadMPBanner(width, height, adUnitId);
             }
             else if(adTypeVideo.equals(adTypeName)){
-                // setupAndLoadMPVideo(width, height, adUnitId);
                 setupAndLoadMPInterstitialVideo(width, height, adUnitId);
-                // setupAndLoadMPInterstitialVideo2(width, height, adUnitId);
             }
         } else if (adServerAdManager.equals(adServerName)) {
             if (adTypeBanner.equals(adTypeName)) {
                 String adUnitId = intent.getStringExtra(Constants.AD_UNIT_ID_NAME);
+                assert adSizeName != null;
                 String[] wAndH = adSizeName.split("x");
-                int width = Integer.valueOf(wAndH[0]);
-                int height = Integer.valueOf(wAndH[1]);
+                int width = Integer.parseInt(wAndH[0]);
+                int height = Integer.parseInt(wAndH[1]);
 
                 // setupAMBanner(width, height, Constants.DFP_BANNER_ADUNIT_ID_ALL_SIZES);
                 setupAMBanner(width, height, adUnitId);
@@ -136,11 +134,7 @@ public class GamoshiActivity extends AppCompatActivity {
         }
     }
 
-    private void setupAndLoadMPInterstitialVideo2(int width, int height, String adUnitId) {
-        // Intent gamoshiActivityIntent = new Intent(this, GamoshiMoPubInterstitialActivity.class);
-        Intent gamoshiActivityIntent = new Intent(this, GamoshiMoPubInterstitial2Activity.class);
-        startActivity(gamoshiActivityIntent);
-    }
+
 
     //*** Banner Configurations: ***
 
@@ -305,6 +299,8 @@ public class GamoshiActivity extends AppCompatActivity {
     }
 
     //*** End of Video Configurations: ***
+
+
     @Override
     protected void onDestroy() {
         if (adView != null) {

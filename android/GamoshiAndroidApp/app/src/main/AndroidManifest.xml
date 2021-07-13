@@ -36,8 +36,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".GamoshiActivity" />
-        <activity android:name=".GamoshiMoPubInterstitialActivity" />
-        <activity android:name=".GamoshiMoPubInterstitial2Activity" />
 
         <!--MoPub Activities-->
         <activity
