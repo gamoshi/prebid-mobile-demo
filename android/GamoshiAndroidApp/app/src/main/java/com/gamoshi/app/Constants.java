@@ -37,6 +37,8 @@ class Constants {
     // MoPub ad unit id:
     static final String GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250 = "db213b75a2524330900c05e17e79f815";
     static final String GAMOSHI_MOPUB_VIDEO_ADUNIT_ID_300x250 = "562a20cf83b24922a8fb91515313b85a";
+    static final String GAMOSHI_MOPUB_VIDEO_DYNAMIC_ADUNIT_ID_300x250 = "c0c99992ffac4712b5013d65b30076d2";
+    
 
     // DFP ad unit id:
     static final String GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES = "/21794425054/hb_pb";
