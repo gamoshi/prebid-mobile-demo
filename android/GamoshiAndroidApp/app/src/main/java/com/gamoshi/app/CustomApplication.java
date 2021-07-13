@@ -21,6 +21,8 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.multidex.BuildConfig;
+
 import com.mopub.common.MoPub;
 import com.mopub.common.SdkConfiguration;
 
@@ -39,12 +41,12 @@ public class CustomApplication extends Application {
         super.onCreate();
 
         //init MoPub SDK
-        List<String> networksToInit = new ArrayList<String>();
+        List<String> networksToInit = new ArrayList<>();
         networksToInit.add("com.mopub.mobileads.VungleRewardedVideo");
 
         //SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder("217ad6fc5d4d433598c569ffd6ea785f")
         SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder("13b14bd907414ffaadc6fe0095ed4714")
-                .withNetworksToInit(networksToInit)
+                // .withNetworksToInit(networksToInit)
                 .build();
         MoPub.initializeSdk(this, sdkConfiguration, null);
 

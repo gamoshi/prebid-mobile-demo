@@ -30,12 +30,16 @@ class Constants {
     static final String AD_UNIT_ID_NAME = "adUnitId";
 
     static final String GAMOSHI_HOST_URL ="https://prebid.gamoshi.io/openrtb2/auction" ;
-    static final String GAMOSHI_ACCOUNT_ID_PREFIX = "gamoshi-";
+    // static final String GAMOSHI_HOST_URL ="https://canary.gamoshi.io/pbs/v1/267/auction" ;
+    // static final String GAMOSHI_HOST_URL ="https://rtb.gamoshi.io/pbs/v1/267/auction" ;
+    // static final String GAMOSHI_ACCOUNT_ID_PREFIX = "gamoshi-";
+    static final String GAMOSHI_ACCOUNT_ID_PREFIX = "";
     static final String GAMOSHI_BANNER_ACCOUNT_ID = "1274";
     static final String GAMOSHI_VIDEO_ACCOUNT_ID = "1275";
 
     // MoPub ad unit id:
     static final String GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250 = "db213b75a2524330900c05e17e79f815";
+    static final String GAMOSHI_MOPUB_VIDEO_ADUNIT_ID_300x250 = "13b14bd907414ffaadc6fe0095ed4714";
 
     // DFP ad unit id:
     static final String GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES = "/21794425054/hb_pb";
