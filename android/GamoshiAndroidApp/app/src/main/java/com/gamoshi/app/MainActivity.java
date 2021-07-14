@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.state.State;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView title = findViewById(R.id.adTitle);
-        title.setText(getString(R.string.app_name));
+        title.setText(getString(R.string.app_name) + "Moses");
 
         // Ad Type Spinner set up
         adTypeSpinnerSetUp();
@@ -179,15 +180,18 @@ public class MainActivity extends AppCompatActivity {
         String adUnitIdString = null;
         if (adServer.equals(adServerMoPub)) {
             if(adType.equals(adTypeBanner)){
-            adUnitIdString = Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250;
+                adUnitIdString = Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_728x90;
             } else if(adType.equals(adTypeVideo)){
-                    adUnitIdString = Constants.GAMOSHI_MOPUB_VIDEO_ADUNIT_ID_300x250;
+               adUnitIdString = Constants.GAMOSHI_MOPUB_VIDEO_DYNAMIC_ADUNIT_ID;
             }
         } else if (adServer.equals(adServerAdManager)) {
             adUnitIdString = Constants.GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES;
         }
 
         if (!TextUtils.isEmpty(adUnitIdString)) {
+            gamoshiActivityIntent.putExtra("320x50", Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_320x50);
+            gamoshiActivityIntent.putExtra("300x250", Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250);
+            gamoshiActivityIntent.putExtra("728x90", Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_728x90);
             gamoshiActivityIntent.putExtra(Constants.AD_UNIT_ID_NAME, adUnitIdString);
         }
 

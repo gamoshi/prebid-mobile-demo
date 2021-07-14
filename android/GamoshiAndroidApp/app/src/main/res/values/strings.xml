@@ -10,7 +10,7 @@
 
     <string-array name="adTypeArray">
         <item>@string/adTypeBanner</item>
-        <item>@string/adTypeVideo</item>
+<!--        <item>@string/adTypeVideo</item>-->
         <!--        <item>@string/adTypeVideo</item>-->
         <!--        <item>@string/adTypeInterstitial</item>-->
         <!--        <item>@string/adTypeBannerVideo</item>-->
@@ -32,6 +32,7 @@
     <string-array name="adSizeArray">
         <item>300x250</item>
         <item>320x50</item>
+        <item>728x90</item>
     </string-array>
     <string name="buttonText">Show Ad</string>
     <string name="autoRefreshText">Refresh Millis</string>

@@ -41,11 +41,16 @@ import org.prebid.mobile.AdUnit;
 import org.prebid.mobile.BannerAdUnit;
 import org.prebid.mobile.Host;
 import org.prebid.mobile.InterstitialAdUnit;
+import org.prebid.mobile.OnCompleteListener2;
 import org.prebid.mobile.PrebidMobile;
 import org.prebid.mobile.ResultCode;
 import org.prebid.mobile.VideoAdUnit;
 import org.prebid.mobile.addendum.AdViewUtils;
 import org.prebid.mobile.addendum.PbFindSizeError;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class GamoshiActivity extends AppCompatActivity {
 
@@ -107,7 +112,7 @@ public class GamoshiActivity extends AppCompatActivity {
         String adServerAdManager = getString(R.string.adServerAdManager);
 
         if (adServerMoPub.equals(adServerName)) {
-            String adUnitId = intent.getStringExtra(Constants.AD_UNIT_ID_NAME);
+            String adUnitId = intent.getStringExtra(adSizeName);
 
             assert adSizeName != null;
             String[] wAndH = adSizeName.split("x");
@@ -117,7 +122,7 @@ public class GamoshiActivity extends AppCompatActivity {
                 setupAndLoadMPBanner(width, height, adUnitId);
             }
             else if(adTypeVideo.equals(adTypeName)){
-                setupAndLoadMPInterstitialVideo(width, height, adUnitId);
+                setupAndLoadMPVideo(width, height, adUnitId);
             }
         } else if (adServerAdManager.equals(adServerName)) {
             if (adTypeBanner.equals(adTypeName)) {
@@ -229,12 +234,16 @@ public class GamoshiActivity extends AppCompatActivity {
 
         //adUnit = new VideoAdUnit(gamoshiSupplyPartnerId, width, height, VideoAdUnit.PlacementType.IN_FEED);
         adUnit = new VideoAdUnit(gamoshiSupplyPartnerId, width, height);
+
         adUnit.setAutoRefreshPeriodMillis(getIntent().getIntExtra(Constants.AUTO_REFRESH_NAME, 0));
-        adUnit.fetchDemand(adView, resultCode -> {
-            GamoshiActivity.this.resultCode = resultCode;
-            adView.loadAd();
-            refreshCount++;
-        });
+//        adUnit.fetchDemand(adView, resultCode -> {
+//            GamoshiActivity.this.resultCode = resultCode;
+//            adView.loadAd();
+//            refreshCount++;
+//        });
+
+        adUnit.fetchDemand(new GamoshiOnComplete(adView,this));
+
     }
 
     void setupAndLoadMPInterstitialVideo(int width, int height, String adUnitId) {
@@ -288,8 +297,12 @@ public class GamoshiActivity extends AppCompatActivity {
 
         int millis = getIntent().getIntExtra(Constants.AUTO_REFRESH_NAME, 0);
         adUnit.setAutoRefreshPeriodMillis(millis);
+
         adUnit.fetchDemand(mpInterstitial, resultCode -> {
+
+            System.out.println(resultCode);
             mpInterstitial.load();
+
 
             refreshCount++;
             GamoshiActivity.this.resultCode = resultCode;
@@ -311,5 +324,32 @@ public class GamoshiActivity extends AppCompatActivity {
         }
 
         super.onDestroy();
+    }
+
+
+    public static class GamoshiOnComplete implements OnCompleteListener2 {
+
+        private final MoPubView adView;
+        private final GamoshiActivity activity;
+
+        public GamoshiOnComplete(MoPubView adView,GamoshiActivity activity) {
+            this.adView = adView;
+            this.activity=activity;
+        }
+
+        @Override
+        public void onComplete(ResultCode resultCode, Map<String, String> unmodifiableMap) {
+
+
+            Set<AdSize> sizes = new HashSet<>();
+            sizes.add(new AdSize(640, 480));
+        //    String uri = Util.generateInstreamUriForGam(Constants.DFP_VAST_ADUNIT_ID_RUBICON, sizes, unmodifiableMap);
+            //adsLoader = new ImaAdsLoader(RubiconInstreamVideoIMADemoActivity.this, Uri.parse(uri));
+           // initializePlayer();
+
+            activity.resultCode = resultCode;
+            adView.loadAd();
+            activity.refreshCount++;
+        }
     }
 }
