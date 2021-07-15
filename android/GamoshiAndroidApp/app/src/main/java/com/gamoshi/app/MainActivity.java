@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.state.State;
 
 import java.util.Arrays;
 import java.util.List;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText supplyPartnerIdText = findViewById(R.id.supplyPartnerIdInput);
 
         adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            List<String> adTypes = Arrays.asList(getResources().getStringArray(R.array.adTypeArray));
+            final List<String> adTypes = Arrays.asList(getResources().getStringArray(R.array.adTypeArray));
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
@@ -142,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (adType.equals(adTypeVideo)) {
 
-                    //adRefreshRow.setVisibility(View.VISIBLE);
+                    // adRefreshRow.setVisibility(View.VISIBLE);
+                    adSizeRow.setVisibility(View.VISIBLE);
+                    supplyPartnerIdText.setText(Constants.GAMOSHI_VIDEO_ACCOUNT_ID);
                 }
             }
 
@@ -158,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
         gamoshiActivityIntent.putExtra(Constants.AD_TYPE_NAME, adType);
 
         String adTypeBanner = getString(R.string.adTypeBanner);
-        if (adType.equals(adTypeBanner)) {
+        String adTypeVideo = getString(R.string.adTypeVideo);
+        if (adType.equals(adTypeBanner) || adType.equals(adTypeVideo) ) {
             gamoshiActivityIntent.putExtra(Constants.AD_SIZE_NAME, adSize);
         }
 
@@ -175,12 +179,19 @@ public class MainActivity extends AppCompatActivity {
         String adServerAdManager = getString(R.string.adServerAdManager);
         String adUnitIdString = null;
         if (adServer.equals(adServerMoPub)) {
-            adUnitIdString = Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250;
+            if(adType.equals(adTypeBanner)){
+                adUnitIdString = Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_728x90;
+            } else if(adType.equals(adTypeVideo)){
+               adUnitIdString = Constants.GAMOSHI_MOPUB_VIDEO_DYNAMIC_ADUNIT_ID;
+            }
         } else if (adServer.equals(adServerAdManager)) {
             adUnitIdString = Constants.GAMOSHI_DFP_BANNER_ADUNIT_ID_ALL_SIZES;
         }
 
         if (!TextUtils.isEmpty(adUnitIdString)) {
+            gamoshiActivityIntent.putExtra("320x50", Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_320x50);
+            gamoshiActivityIntent.putExtra("300x250", Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_300x250);
+            gamoshiActivityIntent.putExtra("728x90", Constants.GAMOSHI_MOPUB_BANNER_ADUNIT_ID_728x90);
             gamoshiActivityIntent.putExtra(Constants.AD_UNIT_ID_NAME, adUnitIdString);
         }
 
