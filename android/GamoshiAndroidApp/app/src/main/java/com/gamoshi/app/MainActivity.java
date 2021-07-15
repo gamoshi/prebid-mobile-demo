@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView title = findViewById(R.id.adTitle);
-        title.setText(getString(R.string.app_name) + "Moses");
+        title.setText(getString(R.string.app_name));
 
         // Ad Type Spinner set up
         adTypeSpinnerSetUp();
